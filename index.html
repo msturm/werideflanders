@@ -373,7 +373,6 @@
       <div class="legend-item"><div class="legend-dot" style="background:#ff1744; border:2px solid #fff;"></div> Finish — Oudenaarde</div>
       <div class="legend-item"><div class="legend-dot" style="background:#ff6b35;"></div> Climb (helling)</div>
       <div class="legend-item"><div class="legend-dot" style="background:#a855f7;border-radius:3px;"></div> Cobbled section (strook)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#facc15;border-radius:3px;"></div> Food &amp; drink stop</div>
       <div class="legend-item toggle-item" id="toggle-photos">
         <div class="legend-dot" style="background:#fff;border:2px solid #cbd5e1;border-radius:3px;font-size:9px;display:flex;align-items:center;justify-content:center;">📷</div>
         <span>Photos &amp; videos</span>
@@ -423,10 +422,7 @@ function parseWaypoints(gpxText) {
     const type = wpt.querySelector('type')?.textContent.trim() || '';
     const desc = wpt.querySelector('desc')?.textContent || '';
 
-    if (type === 'Eet en drinkgelegenheid') {
-      features.push({ lat, lon, name, type: 'food' });
-      continue;
-    }
+    if (type === 'Eet en drinkgelegenheid') continue;
 
     const isStrook = type === 'Kasseistrook';
     const isHelling = type === 'Helling';
@@ -505,16 +501,6 @@ Promise.all([
   const climbMarkers = [];
 
   features.forEach(f => {
-    if (f.type === 'food') {
-      const icon = L.divIcon({
-        html: `<div style="background:#facc15;width:13px;height:13px;border-radius:3px;border:2px solid rgba(255,255,255,0.8);box-shadow:0 2px 6px rgba(0,0,0,0.5);font-size:9px;display:flex;align-items:center;justify-content:center;">🍌</div>`,
-        iconSize: [13, 13], iconAnchor: [6, 6], className: ''
-      });
-      L.marker([f.lat, f.lon], { icon }).addTo(map)
-        .bindPopup(`<div class="popup-title">${f.name}</div><div style="font-size:0.75rem;opacity:0.7;">Food & drink stop</div>`, { maxWidth: 220 });
-      return;
-    }
-
     const color = f.isStrook ? '#a855f7' : '#ff6b35';
     const size  = f.isStrook ? 13 : 16;
     const shape = f.isStrook ? 'border-radius:3px;' : 'border-radius:50%;';
