@@ -397,6 +397,8 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+const MEDIA_BASE_URL = 'https://pub-311bf235e6074d6482fd8a2335885e1d.r2.dev';
+
 // Parse a GPX text into a Leaflet polyline (not yet added to map)
 function gpxToPolyline(gpxText, color, weight, opacity, dashArray) {
   const parser = new DOMParser();
@@ -588,9 +590,9 @@ Promise.all([
       marker.bindPopup(`
         <div style="width:160px;">
           <img src="${p.thumb}" style="width:100%;border-radius:4px;cursor:pointer;display:block;"
-            onclick="openLightbox('${p.type}','photos/${p.file}','${p.file}')">
+            onclick="openLightbox('${p.type}','${MEDIA_BASE_URL}/${p.file}','${p.file}')">
           <div style="font-size:0.7rem;opacity:0.5;margin-top:4px;">${p.file}</div>
-          <button onclick="openLightbox('${p.type}','photos/${p.file}','${p.file}')"
+          <button onclick="openLightbox('${p.type}','${MEDIA_BASE_URL}/${p.file}','${p.file}')"
             style="margin-top:6px;width:100%;background:#1d4ed8;color:#fff;border:none;border-radius:4px;padding:4px 0;cursor:pointer;font-size:0.75rem;">
             ${isVideo ? '▶ Play video' : '🔍 View full size'}
           </button>
