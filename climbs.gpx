@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Ronde van Vlaanderen Route Research"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Ronde van Vlaanderen - Key Climbs and Waypoints</name>
+    <desc>GPS waypoints for the key climbs (hellingen/bergs) and towns along the Tour of Flanders route, Bruges to Oudenaarde (~270km)</desc>
+  </metadata>
+
+  <!-- TOWNS / ROUTE MARKERS -->
+  <wpt lat="51.2093" lon="3.2247">
+    <name>START: Brugge</name>
+    <type>start</type>
+    <cmt>Race start in Bruges / Brugge. km 0.</cmt>
+  </wpt>
+
+  <wpt lat="51.0828" lon="3.4403">
+    <name>Aalter</name>
+    <type>town</type>
+    <cmt>Town waypoint. Approx km 30.</cmt>
+  </wpt>
+
+  <wpt lat="51.0253" lon="3.5503">
+    <name>Nevele</name>
+    <type>town</type>
+    <cmt>Town waypoint. Approx km 55.</cmt>
+  </wpt>
+
+  <wpt lat="51.0328" lon="3.7218">
+    <name>Gent (south bypass)</name>
+    <type>town</type>
+    <cmt>Race passes south of Ghent. Approx km 70.</cmt>
+  </wpt>
+
+  <wpt lat="50.9614" lon="3.7497">
+    <name>Brakel</name>
+    <type>town</type>
+    <cmt>Town waypoint. Approx km 100.</cmt>
+  </wpt>
+
+  <wpt lat="50.8700" lon="3.8097">
+    <name>Zottegem</name>
+    <type>town</type>
+    <cmt>Town waypoint. Approx km 120.</cmt>
+  </wpt>
+
+  <wpt lat="50.7453" lon="3.5967">
+    <name>Ronse / Renaix</name>
+    <type>town</type>
+    <cmt>Town at the southern turning point of the route. Approx km 145.</cmt>
+  </wpt>
+
+  <!-- CLIMBS (in approximate race order) -->
+  <wpt lat="50.8901" lon="3.7512">
+    <name>Kortekeer</name>
+    <type>climb</type>
+    <cmt>Climb: 900m, avg 4.0%, max 7%. Asphalt. Early climb near Ronse.</cmt>
+  </wpt>
+
+  <wpt lat="50.8731" lon="3.7230">
+    <name>Berg ten Houte</name>
+    <type>climb</type>
+    <cmt>Climb: 900m, avg 5.9%, max 9%. Asphalt. Near Ronse.</cmt>
+  </wpt>
+
+  <wpt lat="50.8635" lon="3.6975">
+    <name>Eikenberg</name>
+    <type>climb</type>
+    <cmt>Climb: 1400m, avg 5.6%, max 11%. Asphalt.</cmt>
+  </wpt>
+
+  <wpt lat="50.8367" lon="3.7751">
+    <name>Leberg</name>
+    <type>climb</type>
+    <cmt>Climb: 1000m, avg 5.5%, max 11%. Asphalt.</cmt>
+  </wpt>
+
+  <wpt lat="50.8277" lon="3.8225">
+    <name>Berendries</name>
+    <type>climb</type>
+    <cmt>Climb: 940m, avg 6.0%, max 9%. Asphalt.</cmt>
+  </wpt>
+
+  <wpt lat="50.8519" lon="3.8042">
+    <name>Valkenberg</name>
+    <type>climb</type>
+    <cmt>Climb: 1100m, avg 6.0%, max 11%. Asphalt.</cmt>
+  </wpt>
+
+  <wpt lat="50.8587" lon="3.7865">
+    <name>Wolvenberg</name>
+    <type>climb</type>
+    <cmt>Climb: 1100m, avg 7.3%, max 13%. Asphalt.</cmt>
+  </wpt>
+
+  <wpt lat="50.8469" lon="3.6728">
+    <name>Kanarieberg</name>
+    <type>climb</type>
+    <cmt>Climb: 1200m, avg 5.5%, max 8%. Asphalt. Near Zottegem area.</cmt>
+  </wpt>
+
+  <wpt lat="50.8255" lon="3.6347">
+    <name>Kruisberg / Hotondberg</name>
+    <type>climb</type>
+    <cmt>Climb: 2300m, avg 4.9%, max 11%. Asphalt. Near Kluisbergen/Ronse. Often combined with Hotond.</cmt>
+  </wpt>
+
+  <wpt lat="50.8658" lon="3.6218">
+    <name>Taaienberg</name>
+    <type>climb</type>
+    <cmt>Climb: 530m, avg 6.6%, max 15%. COBBLESTONES. Near Zottegem.</cmt>
+  </wpt>
+
+  <wpt lat="50.8711" lon="3.5821">
+    <name>Steenbeekdries</name>
+    <type>climb</type>
+    <cmt>Climb: 700m, avg 5.0%, max 8%. Asphalt. Near Kluisbergen.</cmt>
+  </wpt>
+
+  <wpt lat="50.8697" lon="3.5683">
+    <name>Wijnpers</name>
+    <type>climb</type>
+    <cmt>Climb: 650m, avg 5.1%, max 8%. Asphalt. Near Kluisbergen.</cmt>
+  </wpt>
+
+  <wpt lat="50.8583" lon="3.6083">
+    <name>Koppenberg</name>
+    <type>climb</type>
+    <cmt>Climb: 600m, avg 11.6%, max 22%. COBBLESTONES. One of the most feared climbs. Near Maarkedal.</cmt>
+  </wpt>
+
+  <wpt lat="50.8558" lon="3.5986">
+    <name>Oude Kwaremont</name>
+    <type>climb</type>
+    <cmt>Climb: 2200m, avg 4.2%, max 11.6%. COBBLESTONES. THE iconic climb. Ridden 3x in finale. Near Kluisbergen.</cmt>
+  </wpt>
+
+  <wpt lat="50.8506" lon="3.6044">
+    <name>Paterberg</name>
+    <type>climb</type>
+    <cmt>Climb: 360m, avg 12.9%, max 20.3%. COBBLESTONES. Short brutal climb. Ridden 3x in finale. Near Kwaremont.</cmt>
+  </wpt>
+
+  <wpt lat="50.8442" lon="3.6097">
+    <name>FINISH: Oudenaarde</name>
+    <type>finish</type>
+    <cmt>Race finish in Oudenaarde. Approx km 270.</cmt>
+  </wpt>
+
+  <!-- APPROXIMATE ROUTE TRACK -->
+  <trk>
+    <name>Ronde van Vlaanderen - Approximate Route</name>
+    <desc>Approximate route from Bruges to Oudenaarde through the Flemish Ardennes. Not an exact road trace - use for planning only.</desc>
+    <trkseg>
+      <trkpt lat="51.2093" lon="3.2247"><name>Brugge Start</name></trkpt>
+      <trkpt lat="51.1950" lon="3.2650"></trkpt>
+      <trkpt lat="51.1700" lon="3.3100"></trkpt>
+      <trkpt lat="51.1400" lon="3.3600"></trkpt>
+      <trkpt lat="51.0828" lon="3.4403"><name>Aalter</name></trkpt>
+      <trkpt lat="51.0600" lon="3.4800"></trkpt>
+      <trkpt lat="51.0400" lon="3.5100"></trkpt>
+      <trkpt lat="51.0253" lon="3.5503"><name>Nevele</name></trkpt>
+      <trkpt lat="51.0100" lon="3.5900"></trkpt>
+      <trkpt lat="51.0000" lon="3.6200"></trkpt>
+      <trkpt lat="51.0150" lon="3.6700"></trkpt>
+      <trkpt lat="51.0328" lon="3.7218"><name>Gent south bypass</name></trkpt>
+      <trkpt lat="51.0100" lon="3.7400"></trkpt>
+      <trkpt lat="50.9800" lon="3.7450"></trkpt>
+      <trkpt lat="50.9614" lon="3.7497"><name>Brakel</name></trkpt>
+      <trkpt lat="50.9300" lon="3.7700"></trkpt>
+      <trkpt lat="50.9000" lon="3.7900"></trkpt>
+      <trkpt lat="50.8700" lon="3.8097"><name>Zottegem</name></trkpt>
+      <trkpt lat="50.8277" lon="3.8225"><name>Berendries</name></trkpt>
+      <trkpt lat="50.8519" lon="3.8042"><name>Valkenberg</name></trkpt>
+      <trkpt lat="50.8587" lon="3.7865"><name>Wolvenberg</name></trkpt>
+      <trkpt lat="50.8367" lon="3.7751"><name>Leberg</name></trkpt>
+      <trkpt lat="50.8901" lon="3.7512"><name>Kortekeer</name></trkpt>
+      <trkpt lat="50.8731" lon="3.7230"><name>Berg ten Houte</name></trkpt>
+      <trkpt lat="50.8635" lon="3.6975"><name>Eikenberg</name></trkpt>
+      <trkpt lat="50.8469" lon="3.6728"><name>Kanarieberg</name></trkpt>
+      <trkpt lat="50.8255" lon="3.6347"><name>Kruisberg / Hotondberg</name></trkpt>
+      <trkpt lat="50.7900" lon="3.6200"></trkpt>
+      <trkpt lat="50.7453" lon="3.5967"><name>Ronse / Renaix</name></trkpt>
+      <trkpt lat="50.7700" lon="3.6050"></trkpt>
+      <trkpt lat="50.8000" lon="3.6100"></trkpt>
+      <trkpt lat="50.8658" lon="3.6218"><name>Taaienberg</name></trkpt>
+      <trkpt lat="50.8711" lon="3.5821"><name>Steenbeekdries</name></trkpt>
+      <trkpt lat="50.8697" lon="3.5683"><name>Wijnpers</name></trkpt>
+      <trkpt lat="50.8583" lon="3.6083"><name>Koppenberg</name></trkpt>
+      <trkpt lat="50.8558" lon="3.5986"><name>Oude Kwaremont (1st)</name></trkpt>
+      <trkpt lat="50.8506" lon="3.6044"><name>Paterberg (1st)</name></trkpt>
+      <trkpt lat="50.8600" lon="3.5900"></trkpt>
+      <trkpt lat="50.8558" lon="3.5986"><name>Oude Kwaremont (2nd)</name></trkpt>
+      <trkpt lat="50.8506" lon="3.6044"><name>Paterberg (2nd)</name></trkpt>
+      <trkpt lat="50.8600" lon="3.5900"></trkpt>
+      <trkpt lat="50.8558" lon="3.5986"><name>Oude Kwaremont (3rd)</name></trkpt>
+      <trkpt lat="50.8506" lon="3.6044"><name>Paterberg (3rd)</name></trkpt>
+      <trkpt lat="50.8442" lon="3.6097"><name>Oudenaarde Finish</name></trkpt>
+    </trkseg>
+  </trk>
+
+</gpx>

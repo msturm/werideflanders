@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ronde van Vlaanderen — Route Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ffcc00 0%, #f5a623 100%);
+      color: #1a1a2e;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .lion-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stats-bar {
+      background: #16213e;
+      border-bottom: 1px solid #0f3460;
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+
+    .stat {
+      padding: 10px 20px;
+      border-right: 1px solid #0f3460;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffcc00;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    #map {
+      flex: 1;
+      z-index: 1;
+    }
+
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+      background: #16213e;
+      border-left: 1px solid #0f3460;
+      overflow-y: auto;
+      z-index: 2;
+    }
+
+    .sidebar-section {
+      padding: 12px 16px 0;
+    }
+
+    .sidebar-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ffcc00;
+      font-weight: 700;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #0f3460;
+    }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+    }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-line {
+      width: 24px;
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    .climb-list {
+      padding: 0 8px 12px;
+    }
+
+    .climb-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-bottom: 2px;
+    }
+
+    .climb-item:hover {
+      background: #0f3460;
+    }
+
+    .climb-item.cobbled {
+      border-left: 3px solid #ff6b35;
+    }
+
+    .climb-item.asphalt {
+      border-left: 3px solid #4ecdc4;
+    }
+
+    .climb-item.strook {
+      border-left: 3px solid #a855f7;
+    }
+
+    .climb-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .climb-stats {
+      font-size: 0.68rem;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .climb-gradient {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .gradient-bar {
+      height: 4px;
+      border-radius: 2px;
+      margin-top: 3px;
+      background: linear-gradient(to right, #4ecdc4, #ffcc00, #ff6b35);
+    }
+
+    /* Leaflet popup overrides */
+    .leaflet-popup-content-wrapper {
+      background: #16213e;
+      color: #eee;
+      border: 1px solid #0f3460;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .leaflet-popup-tip {
+      background: #16213e;
+    }
+
+    .popup-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffcc00;
+      margin-bottom: 6px;
+    }
+
+    .popup-row {
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 0;
+      border-bottom: 1px solid #0f3460;
+    }
+
+    .popup-row:last-child { border-bottom: none; }
+
+    .popup-key { opacity: 0.6; }
+
+    .popup-val { font-weight: 600; }
+
+    .cobbles-badge {
+      display: inline-block;
+      background: #ff6b35;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+      margin-left: 6px;
+    }
+
+    .toggle-item {
+      cursor: pointer;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .toggle-item span {
+      flex: 1;
+      margin-left: 0;
+    }
+
+    .toggle-pill {
+      width: 32px;
+      height: 17px;
+      border-radius: 9px;
+      background: #334;
+      position: relative;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .toggle-pill::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #666;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .toggle-pill.active {
+      background: #1d4ed8;
+    }
+
+    .toggle-pill.active::after {
+      transform: translateX(15px);
+      background: #fff;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox-media {
+      max-width: 90vw;
+      max-height: 82vh;
+      border-radius: 8px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      background: none;
+      border: none;
+    }
+
+    #lightbox-close:hover { opacity: 1; }
+
+    #lightbox-caption {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 700px) {
+      .sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="lion-icon">🦁</div>
+  <div>
+    <h1>Ronde van Vlaanderen</h1>
+    <p>Tour of Flanders — Modern Route (post-2012)</p>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-value">270 km</div><div class="stat-label">Total Distance</div></div>
+  <div class="stat"><div class="stat-value">Brugge</div><div class="stat-label">Start</div></div>
+  <div class="stat"><div class="stat-value">Oudenaarde</div><div class="stat-label">Finish</div></div>
+  <div class="stat"><div class="stat-value">15</div><div class="stat-label">Key Climbs</div></div>
+  <div class="stat"><div class="stat-value">4</div><div class="stat-label">Cobbled Climbs</div></div>
+  <div class="stat"><div class="stat-value">3×</div><div class="stat-label">Kwaremont & Paterberg</div></div>
+</div>
+
+<div class="main">
+  <div id="map"></div>
+
+  <div class="sidebar">
+    <div class="legend">
+      <div class="sidebar-title" style="margin:0 0 8px;">Legend</div>
+      <div class="legend-item toggle-item" id="toggle-rvv">
+        <div class="legend-line" style="background:#3a86ff;"></div>
+        <span>RvV official route</span>
+        <div class="toggle-pill active" data-layer="rvv"></div>
+      </div>
+      <div class="legend-item toggle-item" id="toggle-planned">
+        <div class="legend-line" style="background:#f97316;"></div>
+        <span>We Ride Flanders — planned</span>
+        <div class="toggle-pill active" data-layer="planned"></div>
+      </div>
+      <div class="legend-item toggle-item" id="toggle-ridden">
+        <div class="legend-line" style="background:#e879f9;"></div>
+        <span>We Ride Flanders — ridden</span>
+        <div class="toggle-pill active" data-layer="ridden"></div>
+      </div>
+      <div class="legend-item"><div class="legend-dot" style="background:#00c853; border:2px solid #fff;"></div> Start — Brugge</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff1744; border:2px solid #fff;"></div> Finish — Oudenaarde</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff6b35;"></div> Climb (helling)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#a855f7;border-radius:3px;"></div> Cobbled section (strook)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#facc15;border-radius:3px;"></div> Food &amp; drink stop</div>
+      <div class="legend-item toggle-item" id="toggle-photos">
+        <div class="legend-dot" style="background:#fff;border:2px solid #cbd5e1;border-radius:3px;font-size:9px;display:flex;align-items:center;justify-content:center;">📷</div>
+        <span>Photos &amp; videos</span>
+        <div class="toggle-pill active" data-layer="photos"></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Climbs (in route order)</div>
+    </div>
+    <div class="climb-list" id="climb-list"></div>
+  </div>
+</div>
+
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" class="lightbox-media" style="display:none;max-width:90vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.8);object-fit:contain;">
+  <video id="lightbox-vid" class="lightbox-media" controls style="display:none;max-width:90vw;max-height:82vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.8);object-fit:contain;"></video>
+  <div id="lightbox-caption"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// Parse a GPX text into a Leaflet polyline (not yet added to map)
+function gpxToPolyline(gpxText, color, weight, opacity, dashArray) {
+  const parser = new DOMParser();
+  const gpx = parser.parseFromString(gpxText, 'application/xml');
+  const pts = gpx.querySelectorAll('trkpt');
+  const latlngs = Array.from(pts).map(pt => [
+    parseFloat(pt.getAttribute('lat')),
+    parseFloat(pt.getAttribute('lon'))
+  ]);
+  return L.polyline(latlngs, { color, weight, opacity, lineJoin: 'round', dashArray });
+}
+
+// Parse waypoints from RouteYou GPX into feature objects
+function parseWaypoints(gpxText) {
+  const parser = new DOMParser();
+  const gpx = parser.parseFromString(gpxText, 'application/xml');
+  const features = [];
+  for (const wpt of gpx.querySelectorAll('wpt')) {
+    const lat  = parseFloat(wpt.getAttribute('lat'));
+    const lon  = parseFloat(wpt.getAttribute('lon'));
+    const name = wpt.querySelector('name')?.textContent.trim() || '';
+    const type = wpt.querySelector('type')?.textContent.trim() || '';
+    const desc = wpt.querySelector('desc')?.textContent || '';
+
+    if (type === 'Eet en drinkgelegenheid') {
+      features.push({ lat, lon, name, type: 'food' });
+      continue;
+    }
+
+    const isStrook = type === 'Kasseistrook';
+    const isHelling = type === 'Helling';
+    if (!isStrook && !isHelling) continue;
+
+    // Extract stats from HTML-encoded desc
+    const lengthMatch = desc.match(/Lengte\s*:\s*([\d.]+)\s*km/);
+    const avgMatch    = desc.match(/Gemiddelde hellingsgraad\s*:.*?([\d.]+)\s*%/);
+    const maxMatch    = desc.match(/Maximale hellingsgraad\s*:\s*([\d.]+)\s*%/);
+
+    features.push({
+      lat, lon, name,
+      type: isStrook ? 'strook' : 'helling',
+      isCobbled: true,  // all RouteYou waypoints are either kasseien or hellingen (many kasseien)
+      isStrook,
+      length: lengthMatch ? parseFloat(lengthMatch[1]) * 1000 : null,  // convert km→m
+      avg:    avgMatch    ? parseFloat(avgMatch[1])    : null,
+      max:    maxMatch    ? parseFloat(maxMatch[1])    : null,
+    });
+  }
+  return features;
+}
+
+// Toggle layer helper
+function wireToggle(id, layer) {
+  const pill = document.querySelector(`#${id} .toggle-pill`);
+  document.getElementById(id).addEventListener('click', () => {
+    const visible = map.hasLayer(layer);
+    if (visible) { map.removeLayer(layer); pill.classList.remove('active'); }
+    else          { map.addLayer(layer);    pill.classList.add('active'); }
+  });
+}
+
+// Init map
+const map = L.map('map', { center: [50.95, 3.55], zoom: 10 });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 19
+}).addTo(map);
+
+const startIcon = L.divIcon({
+  html: '<div style="background:#00c853;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.5);"></div>',
+  iconSize: [18, 18], iconAnchor: [9, 9], className: ''
+});
+const finishIcon = L.divIcon({
+  html: '<div style="background:#ff1744;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.5);"></div>',
+  iconSize: [18, 18], iconAnchor: [9, 9], className: ''
+});
+
+Promise.all([
+  fetch('route.gpx').then(r => r.text()),
+  fetch('routeyou-2025-we-ride-flanders-158km.gpx').then(r => r.text()),
+  fetch('We_ride_Flanders_rit.gpx').then(r => r.text()),
+]).then(([mainGpx, plannedGpx, riddenGpx]) => {
+
+  // Secondary routes — drawn first, sit below main route
+  const plannedLine = gpxToPolyline(plannedGpx, '#f97316', 3, 0.8, null).addTo(map);
+  const riddenLine  = gpxToPolyline(riddenGpx,  '#e879f9', 3, 0.8, '6 4').addTo(map);
+  wireToggle('toggle-planned', plannedLine);
+  wireToggle('toggle-ridden',  riddenLine);
+
+  // Main RvV route
+  const mainLine = gpxToPolyline(mainGpx, '#3a86ff', 4, 0.85, null).addTo(map);
+  map.fitBounds(mainLine.getBounds(), { padding: [20, 20] });
+  wireToggle('toggle-rvv', mainLine);
+
+  // Start / finish from main GPX endpoints
+  const mainPts = mainLine.getLatLngs();
+  L.marker(mainPts[0], { icon: startIcon }).addTo(map)
+    .bindPopup('<div class="popup-title">🟢 Start — Brugge</div><div style="font-size:0.75rem;opacity:0.7;">Bruges, West Flanders</div>');
+  L.marker(mainPts[mainPts.length - 1], { icon: finishIcon }).addTo(map)
+    .bindPopup('<div class="popup-title">🏁 Finish — Oudenaarde</div><div style="font-size:0.75rem;opacity:0.7;">East Flanders</div>');
+
+  // Waypoints from RouteYou GPX
+  const features = parseWaypoints(plannedGpx);
+  const climbMarkers = [];
+
+  features.forEach(f => {
+    if (f.type === 'food') {
+      const icon = L.divIcon({
+        html: `<div style="background:#facc15;width:13px;height:13px;border-radius:3px;border:2px solid rgba(255,255,255,0.8);box-shadow:0 2px 6px rgba(0,0,0,0.5);font-size:9px;display:flex;align-items:center;justify-content:center;">🍌</div>`,
+        iconSize: [13, 13], iconAnchor: [6, 6], className: ''
+      });
+      L.marker([f.lat, f.lon], { icon }).addTo(map)
+        .bindPopup(`<div class="popup-title">${f.name}</div><div style="font-size:0.75rem;opacity:0.7;">Food & drink stop</div>`, { maxWidth: 220 });
+      return;
+    }
+
+    const color = f.isStrook ? '#a855f7' : '#ff6b35';
+    const size  = f.isStrook ? 13 : 16;
+    const shape = f.isStrook ? 'border-radius:3px;' : 'border-radius:50%;';
+
+    const icon = L.divIcon({
+      html: `<div style="background:${color};width:${size}px;height:${size}px;${shape}border:2px solid rgba(255,255,255,0.8);box-shadow:0 2px 6px rgba(0,0,0,0.5);"></div>`,
+      iconSize: [size, size], iconAnchor: [size/2, size/2], className: ''
+    });
+
+    const badge = '<span class="cobbles-badge">kasseien</span>';
+    let popupHtml = `<div class="popup-title">${f.name}${badge}</div>`;
+    if (f.length) popupHtml += `<div class="popup-row"><span class="popup-key">Length</span><span class="popup-val">${Math.round(f.length)}m</span></div>`;
+    if (f.avg != null) popupHtml += `<div class="popup-row"><span class="popup-key">Avg gradient</span><span class="popup-val">${f.avg}%</span></div>`;
+    if (f.max != null) {
+      const gc = f.max >= 15 ? '#ff1744' : f.max >= 10 ? '#ff6b35' : '#ffcc00';
+      const gp = Math.min(100, (f.max / 22) * 100);
+      popupHtml += `<div class="popup-row"><span class="popup-key">Max gradient</span><span class="popup-val" style="color:${gc}">${f.max}%</span></div>`;
+      popupHtml += `<div style="margin-top:6px;"><div style="font-size:0.65rem;opacity:0.5;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">Max gradient</div><div style="background:#0f3460;border-radius:3px;height:5px;"><div style="background:${gc};width:${gp}%;height:5px;border-radius:3px;"></div></div></div>`;
+    }
+
+    const marker = L.marker([f.lat, f.lon], { icon }).addTo(map).bindPopup(popupHtml, { maxWidth: 220 });
+    climbMarkers.push({ marker, f });
+  });
+
+  // Sidebar
+  const climbList = document.getElementById('climb-list');
+  features.filter(f => f.type !== 'food').forEach(f => {
+    const div = document.createElement('div');
+    div.className = `climb-item ${f.isStrook ? 'strook' : 'cobbled'}`;
+    let stats = '';
+    if (f.length) stats += `${Math.round(f.length)}m`;
+    if (f.avg != null && f.max != null) stats += ` · ${f.avg}% avg · ${f.max}% max`;
+    const gc = f.max >= 15 ? '#ff1744' : f.max >= 10 ? '#ff6b35' : '#ffcc00';
+    const gp = f.max ? Math.min(100, (f.max / 22) * 100) : 0;
+    div.innerHTML = `
+      <div class="climb-name">${f.name} <span class="cobbles-badge">kasseien</span></div>
+      <div class="climb-stats">${stats}</div>
+      ${f.max ? `<div style="background:#0f3460;border-radius:2px;height:3px;margin-top:4px;"><div style="background:${gc};width:${gp}%;height:3px;border-radius:2px;"></div></div>` : ''}
+    `;
+    div.addEventListener('click', () => {
+      const entry = climbMarkers.find(c => c.f === f);
+      if (entry) { map.setView(entry.marker.getLatLng(), 15); entry.marker.openPopup(); }
+    });
+    climbList.appendChild(div);
+  });
+  // Photos & videos
+  fetch('photos.json').then(r => r.json()).then(photos => {
+    const photoLayerGroup = L.layerGroup().addTo(map);
+
+    photos.forEach(p => {
+      const isVideo = p.type === 'video';
+      const accentColor = isVideo ? '#e879f9' : '#fff';
+
+      // Pin-style marker: circular thumbnail + teardrop pointer
+      const icon = L.divIcon({
+        html: `<div style="position:relative;width:48px;display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+          <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;
+            border:3px solid ${accentColor};box-shadow:0 2px 8px rgba(0,0,0,0.6);
+            background:#111;position:relative;flex-shrink:0;">
+            <img src="${p.thumb}" style="width:100%;height:100%;object-fit:cover;">
+            ${isVideo ? `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);font-size:16px;color:${accentColor};">▶</div>` : ''}
+          </div>
+          <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid ${accentColor};margin-top:-1px;"></div>
+        </div>`,
+        iconSize: [48, 58],
+        iconAnchor: [24, 58],
+        className: ''
+      });
+
+      const marker = L.marker([p.lat, p.lon], { icon, zIndexOffset: -100 })
+        .addTo(photoLayerGroup);
+
+      marker.bindPopup(`
+        <div style="width:160px;">
+          <img src="${p.thumb}" style="width:100%;border-radius:4px;cursor:pointer;display:block;"
+            onclick="openLightbox('${p.type}','photos/${p.file}','${p.file}')">
+          <div style="font-size:0.7rem;opacity:0.5;margin-top:4px;">${p.file}</div>
+          <button onclick="openLightbox('${p.type}','photos/${p.file}','${p.file}')"
+            style="margin-top:6px;width:100%;background:#1d4ed8;color:#fff;border:none;border-radius:4px;padding:4px 0;cursor:pointer;font-size:0.75rem;">
+            ${isVideo ? '▶ Play video' : '🔍 View full size'}
+          </button>
+        </div>`, { maxWidth: 180 });
+    });
+
+    // Wire toggle for photos layer group
+    const photoPill = document.querySelector('#toggle-photos .toggle-pill');
+    document.getElementById('toggle-photos').addEventListener('click', () => {
+      if (map.hasLayer(photoLayerGroup)) {
+        map.removeLayer(photoLayerGroup);
+        photoPill.classList.remove('active');
+      } else {
+        map.addLayer(photoLayerGroup);
+        photoPill.classList.add('active');
+      }
+    });
+  });
+});
+
+function openLightbox(type, src, caption) {
+  const lb  = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const vid = document.getElementById('lightbox-vid');
+  document.getElementById('lightbox-caption').textContent = caption;
+  if (type === 'video') {
+    img.style.display = 'none';
+    vid.style.display = 'block';
+    vid.src = src;
+    vid.play();
+  } else {
+    vid.style.display = 'none';
+    vid.pause(); vid.src = '';
+    img.style.display = 'block';
+    img.src = src;
+  }
+  lb.classList.add('open');
+}
+
+function closeLightbox() {
+  const lb  = document.getElementById('lightbox');
+  const vid = document.getElementById('lightbox-vid');
+  vid.pause(); vid.src = '';
+  lb.classList.remove('open');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

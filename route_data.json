@@ -1,0 +1,371 @@
+{
+  "race": {
+    "name": "Ronde van Vlaanderen",
+    "english_name": "Tour of Flanders",
+    "edition_reference": "Modern route (post-2012 finish in Oudenaarde)",
+    "start": {
+      "city": "Brugge",
+      "english": "Bruges",
+      "lat": 51.2093,
+      "lon": 3.2247
+    },
+    "finish": {
+      "city": "Oudenaarde",
+      "lat": 50.8442,
+      "lon": 3.6097
+    },
+    "approximate_distance_km": 270
+  },
+  "key_climbs": [
+    {
+      "name": "Kortekeer",
+      "lat": 50.8901,
+      "lon": 3.7512,
+      "length_m": 900,
+      "avg_gradient_pct": 4.0,
+      "max_gradient_pct": 7.0,
+      "surface": "asphalt",
+      "notes": "Early climb in the route near Ronse area"
+    },
+    {
+      "name": "Berg ten Houte",
+      "lat": 50.8731,
+      "lon": 3.7230,
+      "length_m": 900,
+      "avg_gradient_pct": 5.9,
+      "max_gradient_pct": 9.0,
+      "surface": "asphalt",
+      "notes": "Near Ronse, one of the earlier climbs"
+    },
+    {
+      "name": "Eikenberg",
+      "lat": 50.8635,
+      "lon": 3.6975,
+      "length_m": 1400,
+      "avg_gradient_pct": 5.6,
+      "max_gradient_pct": 11.0,
+      "surface": "asphalt",
+      "notes": "Near Ronse"
+    },
+    {
+      "name": "Leberg",
+      "lat": 50.8367,
+      "lon": 3.7751,
+      "length_m": 1000,
+      "avg_gradient_pct": 5.5,
+      "max_gradient_pct": 11.0,
+      "surface": "asphalt",
+      "notes": "In the Flemish Ardennes"
+    },
+    {
+      "name": "Berendries",
+      "lat": 50.8277,
+      "lon": 3.8225,
+      "length_m": 940,
+      "avg_gradient_pct": 6.0,
+      "max_gradient_pct": 9.0,
+      "surface": "asphalt",
+      "notes": "Near Ninove area"
+    },
+    {
+      "name": "Valkenberg",
+      "lat": 50.8519,
+      "lon": 3.8042,
+      "length_m": 1100,
+      "avg_gradient_pct": 6.0,
+      "max_gradient_pct": 11.0,
+      "surface": "asphalt",
+      "notes": "Flemish Ardennes"
+    },
+    {
+      "name": "Wolvenberg",
+      "lat": 50.8587,
+      "lon": 3.7865,
+      "length_m": 1100,
+      "avg_gradient_pct": 7.3,
+      "max_gradient_pct": 13.0,
+      "surface": "asphalt",
+      "notes": "Flemish Ardennes, one of the steeper early climbs"
+    },
+    {
+      "name": "Kanarieberg",
+      "lat": 50.8469,
+      "lon": 3.6728,
+      "length_m": 1200,
+      "avg_gradient_pct": 5.5,
+      "max_gradient_pct": 8.0,
+      "surface": "asphalt",
+      "notes": "Near Zottegem area"
+    },
+    {
+      "name": "Kruisberg / Hotondberg",
+      "lat": 50.8255,
+      "lon": 3.6347,
+      "length_m": 2300,
+      "avg_gradient_pct": 4.9,
+      "max_gradient_pct": 11.0,
+      "surface": "asphalt",
+      "notes": "Near Ronse/Kluisbergen, often combined; one of the longer climbs before the finale"
+    },
+    {
+      "name": "Taaienberg",
+      "lat": 50.8658,
+      "lon": 3.6218,
+      "length_m": 530,
+      "avg_gradient_pct": 6.6,
+      "max_gradient_pct": 15.0,
+      "surface": "cobblestones (kasseien)",
+      "notes": "Near Zottegem, cobbled climb, typically in the later part of the race"
+    },
+    {
+      "name": "Steenbeekdries",
+      "lat": 50.8711,
+      "lon": 3.5821,
+      "length_m": 700,
+      "avg_gradient_pct": 5.0,
+      "max_gradient_pct": 8.0,
+      "surface": "asphalt",
+      "notes": "Near Kluisbergen"
+    },
+    {
+      "name": "Wijnpers",
+      "lat": 50.8697,
+      "lon": 3.5683,
+      "length_m": 650,
+      "avg_gradient_pct": 5.1,
+      "max_gradient_pct": 8.0,
+      "surface": "asphalt",
+      "notes": "Near Kluisbergen"
+    },
+    {
+      "name": "Koppenberg",
+      "lat": 50.8583,
+      "lon": 3.6083,
+      "length_m": 600,
+      "avg_gradient_pct": 11.6,
+      "max_gradient_pct": 22.0,
+      "surface": "cobblestones (kasseien)",
+      "notes": "One of the most feared cobbled climbs; max 22% gradient; near Maarkedal/Oudenaarde"
+    },
+    {
+      "name": "Paterberg",
+      "lat": 50.8506,
+      "lon": 3.6044,
+      "length_m": 360,
+      "avg_gradient_pct": 12.9,
+      "max_gradient_pct": 20.3,
+      "surface": "cobblestones (kasseien)",
+      "notes": "Short, brutal cobbled climb immediately before Oude Kwaremont in the finale"
+    },
+    {
+      "name": "Oude Kwaremont",
+      "lat": 50.8558,
+      "lon": 3.5986,
+      "length_m": 2200,
+      "avg_gradient_pct": 4.2,
+      "max_gradient_pct": 11.6,
+      "surface": "cobblestones (kasseien)",
+      "notes": "The most iconic climb of the race; 2.2km of cobblestones; ridden three times in the modern route finale"
+    }
+  ],
+  "key_cobbled_sections": [
+    {
+      "name": "Haaghoek",
+      "location": "Near Lichtervelde / early route",
+      "lat": 51.0083,
+      "lon": 3.1483,
+      "notes": "One of the first cobbled sections after leaving Bruges area"
+    },
+    {
+      "name": "Lippenhovestraat / Paddestraat",
+      "location": "Near Ruiselede/Aalter",
+      "lat": 51.0331,
+      "lon": 3.3803,
+      "notes": "Cobbled sector in the flat central Flanders section"
+    },
+    {
+      "name": "Mariaborrestraat",
+      "location": "Near Zottegem",
+      "lat": 50.8756,
+      "lon": 3.7981,
+      "notes": "Cobbled sector in the Flemish Ardennes approach"
+    },
+    {
+      "name": "Lange Munte",
+      "location": "Near Zottegem",
+      "lat": 50.8703,
+      "lon": 3.8011,
+      "notes": "Short cobbled sector"
+    },
+    {
+      "name": "Taaienberg (cobbled climb)",
+      "location": "Near Zottegem",
+      "lat": 50.8658,
+      "lon": 3.6218,
+      "notes": "Cobbled climb section"
+    },
+    {
+      "name": "Koppenberg (cobbled climb)",
+      "location": "Near Maarkedal",
+      "lat": 50.8583,
+      "lon": 3.6083,
+      "notes": "600m of brutal cobblestones up to 22% gradient"
+    },
+    {
+      "name": "Paterberg (cobbled climb)",
+      "location": "Near Kluisbergen/Kwaremont",
+      "lat": 50.8506,
+      "lon": 3.6044,
+      "notes": "360m cobbled climb at avg 12.9%"
+    },
+    {
+      "name": "Oude Kwaremont (cobbled climb)",
+      "location": "Near Kluisbergen",
+      "lat": 50.8558,
+      "lon": 3.5986,
+      "notes": "2.2km cobbled climb, the centrepiece of the race finale"
+    }
+  ],
+  "route_waypoints": [
+    {
+      "order": 1,
+      "name": "Brugge (Start)",
+      "lat": 51.2093,
+      "lon": 3.2247,
+      "km_from_start": 0
+    },
+    {
+      "order": 2,
+      "name": "Aalter",
+      "lat": 51.0828,
+      "lon": 3.4403,
+      "km_from_start": 30
+    },
+    {
+      "order": 3,
+      "name": "Zomergem / Ursel area",
+      "lat": 51.1033,
+      "lon": 3.5619,
+      "km_from_start": 45
+    },
+    {
+      "order": 4,
+      "name": "Nevele",
+      "lat": 51.0253,
+      "lon": 3.5503,
+      "km_from_start": 55
+    },
+    {
+      "order": 5,
+      "name": "Gent (bypass south)",
+      "lat": 51.0328,
+      "lon": 3.7218,
+      "km_from_start": 70
+    },
+    {
+      "order": 6,
+      "name": "Brakel area",
+      "lat": 50.9614,
+      "lon": 3.7497,
+      "km_from_start": 100
+    },
+    {
+      "order": 7,
+      "name": "Zottegem",
+      "lat": 50.8700,
+      "lon": 3.8097,
+      "km_from_start": 120
+    },
+    {
+      "order": 8,
+      "name": "Ronse / Renaix",
+      "lat": 50.7453,
+      "lon": 3.5967,
+      "km_from_start": 145
+    },
+    {
+      "order": 9,
+      "name": "Kluisbergen (Kruisberg/Hotond area)",
+      "lat": 50.8255,
+      "lon": 3.6347,
+      "km_from_start": 175
+    },
+    {
+      "order": 10,
+      "name": "Taaienberg",
+      "lat": 50.8658,
+      "lon": 3.6218,
+      "km_from_start": 195
+    },
+    {
+      "order": 11,
+      "name": "Koppenberg",
+      "lat": 50.8583,
+      "lon": 3.6083,
+      "km_from_start": 215
+    },
+    {
+      "order": 12,
+      "name": "Steenbeekdries",
+      "lat": 50.8711,
+      "lon": 3.5821,
+      "km_from_start": 222
+    },
+    {
+      "order": 13,
+      "name": "Wijnpers",
+      "lat": 50.8697,
+      "lon": 3.5683,
+      "km_from_start": 226
+    },
+    {
+      "order": 14,
+      "name": "Oude Kwaremont (1st passage)",
+      "lat": 50.8558,
+      "lon": 3.5986,
+      "km_from_start": 240
+    },
+    {
+      "order": 15,
+      "name": "Paterberg (1st passage)",
+      "lat": 50.8506,
+      "lon": 3.6044,
+      "km_from_start": 243
+    },
+    {
+      "order": 16,
+      "name": "Oude Kwaremont (2nd passage)",
+      "lat": 50.8558,
+      "lon": 3.5986,
+      "km_from_start": 252
+    },
+    {
+      "order": 17,
+      "name": "Paterberg (2nd passage)",
+      "lat": 50.8506,
+      "lon": 3.6044,
+      "km_from_start": 255
+    },
+    {
+      "order": 18,
+      "name": "Oude Kwaremont (3rd passage / decisive)",
+      "lat": 50.8558,
+      "lon": 3.5986,
+      "km_from_start": 262
+    },
+    {
+      "order": 19,
+      "name": "Paterberg (3rd passage / decisive)",
+      "lat": 50.8506,
+      "lon": 3.6044,
+      "km_from_start": 265
+    },
+    {
+      "order": 20,
+      "name": "Oudenaarde (Finish)",
+      "lat": 50.8442,
+      "lon": 3.6097,
+      "km_from_start": 270
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "type": "FeatureCollection",
+  "name": "Ronde van Vlaanderen - Key Points",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brugge (Start)",
+        "type": "start",
+        "km_from_start": 0
+      },
+      "geometry": { "type": "Point", "coordinates": [3.2247, 51.2093] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Aalter",
+        "type": "town",
+        "km_from_start": 30
+      },
+      "geometry": { "type": "Point", "coordinates": [3.4403, 51.0828] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nevele",
+        "type": "town",
+        "km_from_start": 55
+      },
+      "geometry": { "type": "Point", "coordinates": [3.5503, 51.0253] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gent (bypass south)",
+        "type": "town",
+        "km_from_start": 70
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7218, 51.0328] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brakel",
+        "type": "town",
+        "km_from_start": 100
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7497, 50.9614] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zottegem",
+        "type": "town",
+        "km_from_start": 120
+      },
+      "geometry": { "type": "Point", "coordinates": [3.8097, 50.8700] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ronse / Renaix",
+        "type": "town",
+        "km_from_start": 145
+      },
+      "geometry": { "type": "Point", "coordinates": [3.5967, 50.7453] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kortekeer",
+        "type": "climb",
+        "length_m": 900,
+        "avg_gradient_pct": 4.0,
+        "max_gradient_pct": 7.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7512, 50.8901] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Berg ten Houte",
+        "type": "climb",
+        "length_m": 900,
+        "avg_gradient_pct": 5.9,
+        "max_gradient_pct": 9.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7230, 50.8731] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eikenberg",
+        "type": "climb",
+        "length_m": 1400,
+        "avg_gradient_pct": 5.6,
+        "max_gradient_pct": 11.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6975, 50.8635] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leberg",
+        "type": "climb",
+        "length_m": 1000,
+        "avg_gradient_pct": 5.5,
+        "max_gradient_pct": 11.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7751, 50.8367] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Berendries",
+        "type": "climb",
+        "length_m": 940,
+        "avg_gradient_pct": 6.0,
+        "max_gradient_pct": 9.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.8225, 50.8277] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valkenberg",
+        "type": "climb",
+        "length_m": 1100,
+        "avg_gradient_pct": 6.0,
+        "max_gradient_pct": 11.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.8042, 50.8519] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wolvenberg",
+        "type": "climb",
+        "length_m": 1100,
+        "avg_gradient_pct": 7.3,
+        "max_gradient_pct": 13.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.7865, 50.8587] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kanarieberg",
+        "type": "climb",
+        "length_m": 1200,
+        "avg_gradient_pct": 5.5,
+        "max_gradient_pct": 8.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6728, 50.8469] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kruisberg / Hotondberg",
+        "type": "climb",
+        "length_m": 2300,
+        "avg_gradient_pct": 4.9,
+        "max_gradient_pct": 11.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6347, 50.8255] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Taaienberg",
+        "type": "climb",
+        "length_m": 530,
+        "avg_gradient_pct": 6.6,
+        "max_gradient_pct": 15.0,
+        "surface": "cobblestones"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6218, 50.8658] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Steenbeekdries",
+        "type": "climb",
+        "length_m": 700,
+        "avg_gradient_pct": 5.0,
+        "max_gradient_pct": 8.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.5821, 50.8711] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wijnpers",
+        "type": "climb",
+        "length_m": 650,
+        "avg_gradient_pct": 5.1,
+        "max_gradient_pct": 8.0,
+        "surface": "asphalt"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.5683, 50.8697] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Koppenberg",
+        "type": "climb",
+        "length_m": 600,
+        "avg_gradient_pct": 11.6,
+        "max_gradient_pct": 22.0,
+        "surface": "cobblestones"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6083, 50.8583] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paterberg",
+        "type": "climb",
+        "length_m": 360,
+        "avg_gradient_pct": 12.9,
+        "max_gradient_pct": 20.3,
+        "surface": "cobblestones"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6044, 50.8506] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oude Kwaremont",
+        "type": "climb",
+        "length_m": 2200,
+        "avg_gradient_pct": 4.2,
+        "max_gradient_pct": 11.6,
+        "surface": "cobblestones"
+      },
+      "geometry": { "type": "Point", "coordinates": [3.5986, 50.8558] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oudenaarde (Finish)",
+        "type": "finish",
+        "km_from_start": 270
+      },
+      "geometry": { "type": "Point", "coordinates": [3.6097, 50.8442] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Route: Brugge to Oudenaarde (approximate)",
+        "type": "route",
+        "description": "Approximate route polyline for Ronde van Vlaanderen. Not an exact road trace."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [3.2247, 51.2093],
+          [3.3100, 51.1700],
+          [3.4403, 51.0828],
+          [3.5503, 51.0253],
+          [3.6200, 51.0000],
+          [3.7218, 51.0328],
+          [3.7497, 50.9614],
+          [3.7800, 50.9200],
+          [3.8097, 50.8700],
+          [3.8225, 50.8277],
+          [3.8042, 50.8519],
+          [3.7865, 50.8587],
+          [3.7751, 50.8367],
+          [3.7512, 50.8901],
+          [3.7230, 50.8731],
+          [3.6975, 50.8635],
+          [3.6728, 50.8469],
+          [3.6347, 50.8255],
+          [3.5967, 50.7453],
+          [3.6218, 50.8658],
+          [3.5821, 50.8711],
+          [3.5683, 50.8697],
+          [3.6083, 50.8583],
+          [3.5986, 50.8558],
+          [3.6044, 50.8506],
+          [3.5986, 50.8558],
+          [3.6044, 50.8506],
+          [3.5986, 50.8558],
+          [3.6044, 50.8506],
+          [3.6097, 50.8442]
+        ]
+      }
+    }
+  ]
+}
