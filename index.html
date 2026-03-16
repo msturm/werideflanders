@@ -370,7 +370,8 @@
       </div>
       <div class="legend-item"><div class="legend-dot" style="background:#00c853; border:2px solid #fff;"></div> Start — Brugge</div>
       <div class="legend-item"><div class="legend-dot" style="background:#ff1744; border:2px solid #fff;"></div> Finish — Oudenaarde</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#4ecdc4;"></div> Climb (helling)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4ecdc4;"></div> Climb — asphalt (helling)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff6b35;"></div> Climb — cobbled (helling)</div>
       <div class="legend-item"><div class="legend-dot" style="background:#a855f7;border-radius:3px;"></div> Cobbled section (kasseistrook)</div>
       <div class="legend-item toggle-item" id="toggle-photos">
         <div class="legend-dot" style="background:#fff;border:2px solid #cbd5e1;border-radius:3px;font-size:9px;display:flex;align-items:center;justify-content:center;">📷</div>
@@ -409,6 +410,28 @@ function gpxToPolyline(gpxText, color, weight, opacity, dashArray) {
   return L.polyline(latlngs, { color, weight, opacity, lineJoin: 'round', dashArray });
 }
 
+// Climbfinder data: cobbled status and URL slug per climb name
+const CLIMBFINDER = {
+  'Berendries':              { cobbled: true,  slug: 'berendries' },
+  'Molenberg':               { cobbled: true,  slug: 'molenberg' },
+  'Wolvenberg':              { cobbled: true,  slug: 'wolvenberg' },
+  'Taaienberg':              { cobbled: true,  slug: 'taaienberg' },
+  'Koppenberg':              { cobbled: true,  slug: 'koppenberg' },
+  'Oude Kwaremont':          { cobbled: true,  slug: 'oude-kwaremont' },
+  'Steenbeekdries':          { cobbled: true,  slug: 'steenbeekdries' },
+  'Paterberg':               { cobbled: true,  slug: 'paterberg' },
+  'Tenbosse':                { cobbled: false, slug: 'tenbosse' },
+  'Valkenberg':              { cobbled: false, slug: 'valkenberg' },
+  'Karnemelkbeekstraat':     { cobbled: false, slug: 'karnemelkbeekstraat' },
+  'Muur van Geraardsbergen': { cobbled: true,  slug: 'muur-van-geraardsbergen' },
+  'Eikenberg':               { cobbled: true,  slug: 'eikenberg' },
+  'Berg Ten Houte':          { cobbled: true,  slug: 'berg-ten-houte' },
+  'Leberg':                  { cobbled: true,  slug: 'leberg' },
+  'Parikeberg':              { cobbled: false, slug: 'parikeberg' },
+  'Hotond':                  { cobbled: false, slug: 'hotond' },
+  'Oude Kruisberg':          { cobbled: true,  slug: 'oude-kruisberg' },
+};
+
 // Parse waypoints from RouteYou GPX into feature objects
 function parseWaypoints(gpxText) {
   const parser = new DOMParser();
@@ -432,12 +455,17 @@ function parseWaypoints(gpxText) {
     const avgMatch    = desc.match(/Gemiddelde hellingsgraad\s*:.*?([\d.]+)\s*%/);
     const maxMatch    = desc.match(/Maximale hellingsgraad\s*:\s*([\d.]+)\s*%/);
 
+    const cf = CLIMBFINDER[name];
+    const isCobbled = isStrook || (cf ? cf.cobbled : false);
+    const cfUrl = cf ? `https://climbfinder.com/en/climbs/${cf.slug}` : null;
+
     features.push({
       lat, lon, name,
       type: isStrook ? 'strook' : 'helling',
-      isCobbled: isStrook,
+      isCobbled,
       isStrook,
-      length: lengthMatch ? parseFloat(lengthMatch[1]) * 1000 : null,  // convert km→m
+      cfUrl,
+      length: lengthMatch ? parseFloat(lengthMatch[1]) * 1000 : null,
       avg:    avgMatch    ? parseFloat(avgMatch[1])    : null,
       max:    maxMatch    ? parseFloat(maxMatch[1])    : null,
     });
@@ -500,7 +528,7 @@ Promise.all([
   const climbMarkers = [];
 
   features.forEach(f => {
-    const color = f.isStrook ? '#a855f7' : '#4ecdc4';
+    const color = f.isStrook ? '#a855f7' : f.isCobbled ? '#ff6b35' : '#4ecdc4';
     const size  = f.isStrook ? 13 : 16;
     const shape = f.isStrook ? 'border-radius:3px;' : 'border-radius:50%;';
 
@@ -509,7 +537,7 @@ Promise.all([
       iconSize: [size, size], iconAnchor: [size/2, size/2], className: ''
     });
 
-    const badge = f.isStrook ? '<span class="cobbles-badge">kasseien</span>' : '';
+    const badge = f.isCobbled ? '<span class="cobbles-badge">kasseien</span>' : '';
     let popupHtml = `<div class="popup-title">${f.name}${badge}</div>`;
     if (f.length) popupHtml += `<div class="popup-row"><span class="popup-key">Length</span><span class="popup-val">${Math.round(f.length)}m</span></div>`;
     if (f.avg != null) popupHtml += `<div class="popup-row"><span class="popup-key">Avg gradient</span><span class="popup-val">${f.avg}%</span></div>`;
@@ -519,6 +547,7 @@ Promise.all([
       popupHtml += `<div class="popup-row"><span class="popup-key">Max gradient</span><span class="popup-val" style="color:${gc}">${f.max}%</span></div>`;
       popupHtml += `<div style="margin-top:6px;"><div style="font-size:0.65rem;opacity:0.5;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">Max gradient</div><div style="background:#0f3460;border-radius:3px;height:5px;"><div style="background:${gc};width:${gp}%;height:5px;border-radius:3px;"></div></div></div>`;
     }
+    if (f.cfUrl) popupHtml += `<div style="margin-top:8px;"><a href="${f.cfUrl}" target="_blank" style="font-size:0.7rem;color:#60a5fa;">View on Climbfinder ↗</a></div>`;
 
     const marker = L.marker([f.lat, f.lon], { icon }).addTo(map).bindPopup(popupHtml, { maxWidth: 220 });
     climbMarkers.push({ marker, f });
@@ -528,16 +557,17 @@ Promise.all([
   const climbList = document.getElementById('climb-list');
   features.filter(f => f.type !== 'food').forEach(f => {
     const div = document.createElement('div');
-    div.className = `climb-item ${f.isStrook ? 'strook' : 'asphalt'}`;
+    div.className = `climb-item ${f.isStrook ? 'strook' : f.isCobbled ? 'cobbled' : 'asphalt'}`;
     let stats = '';
     if (f.length) stats += `${Math.round(f.length)}m`;
     if (f.avg != null && f.max != null) stats += ` · ${f.avg}% avg · ${f.max}% max`;
     const gc = f.max >= 15 ? '#ff1744' : f.max >= 10 ? '#ff6b35' : '#ffcc00';
     const gp = f.max ? Math.min(100, (f.max / 22) * 100) : 0;
     div.innerHTML = `
-      <div class="climb-name">${f.name} ${f.isStrook ? '<span class="cobbles-badge">kasseien</span>' : ''}</div>
+      <div class="climb-name">${f.name} ${f.isCobbled ? '<span class="cobbles-badge">kasseien</span>' : ''}</div>
       <div class="climb-stats">${stats}</div>
       ${f.max ? `<div style="background:#0f3460;border-radius:2px;height:3px;margin-top:4px;"><div style="background:${gc};width:${gp}%;height:3px;border-radius:2px;"></div></div>` : ''}
+      ${f.cfUrl ? `<div style="margin-top:4px;"><a href="${f.cfUrl}" target="_blank" style="font-size:0.65rem;color:#60a5fa;text-decoration:none;" onclick="event.stopPropagation()">Climbfinder ↗</a></div>` : ''}
     `;
     div.addEventListener('click', () => {
       const entry = climbMarkers.find(c => c.f === f);
