@@ -486,7 +486,7 @@ Promise.all([
 
   // Main RvV route
   const mainLine = gpxToPolyline(mainGpx, '#3a86ff', 4, 0.85, null);
-  map.fitBounds(mainLine.getBounds(), { padding: [20, 20] });
+  map.fitBounds(plannedLine.getBounds(), { padding: [20, 20] });
   wireToggle('toggle-rvv', mainLine);
 
   // Start / finish from main GPX endpoints
