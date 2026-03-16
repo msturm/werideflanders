@@ -24,7 +24,6 @@ After re-exporting, regenerate the thumbnails by running:
 | IMG_2189.png | photo |
 | IMG_2190.mov | video |
 | IMG_2191.png | photo |
-| IMG_2192.png | photo |
 | IMG_2193.mov | video |
 | IMG_2194.mov | video |
 | IMG_2195.mov | video |
