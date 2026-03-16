@@ -357,7 +357,7 @@
       <div class="legend-item toggle-item" id="toggle-rvv">
         <div class="legend-line" style="background:#3a86ff;"></div>
         <span>RvV official route</span>
-        <div class="toggle-pill active" data-layer="rvv"></div>
+        <div class="toggle-pill" data-layer="rvv"></div>
       </div>
       <div class="legend-item toggle-item" id="toggle-planned">
         <div class="legend-line" style="background:#f97316;"></div>
@@ -485,7 +485,7 @@ Promise.all([
   wireToggle('toggle-ridden',  riddenLine);
 
   // Main RvV route
-  const mainLine = gpxToPolyline(mainGpx, '#3a86ff', 4, 0.85, null).addTo(map);
+  const mainLine = gpxToPolyline(mainGpx, '#3a86ff', 4, 0.85, null);
   map.fitBounds(mainLine.getBounds(), { padding: [20, 20] });
   wireToggle('toggle-rvv', mainLine);
 
